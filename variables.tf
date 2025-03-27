@@ -46,3 +46,8 @@ variable "ssh_key" {
   type        = string
   description = "The public key that will be used to reach the cluster."
 }
+
+variable "api_key" {
+  type        = string
+  description = "The IBM Cloud API key used to deploy the cluster."
+}

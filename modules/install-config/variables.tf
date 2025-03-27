@@ -5,7 +5,7 @@ variable "basedomain" {
 
 variable "cluster_dir" {
   type        = string
-  description = "The name of the cluster."
+  description = "The directory that holds the artifacts of the cluster create."
 }
 
 variable "cluster_name" {

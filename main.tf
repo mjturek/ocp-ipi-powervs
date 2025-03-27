@@ -11,3 +11,9 @@ module "install-config" {
   pull_secret    = var.pull_secret
   ssh_key        = var.ssh_key
 }
+
+module "manifests" {
+  source = "./modules/manifests"
+  api_key     = var.api_key
+  cluster_dir = pathexpand("~/${var.cluster_dir}")
+}
