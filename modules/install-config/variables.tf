@@ -42,3 +42,8 @@ variable "ssh_key" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
 }
+
+variable "vpc_name" {
+  type        = string
+  description = "Name of the VPC that you will be deploying from."
+}

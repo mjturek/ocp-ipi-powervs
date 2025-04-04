@@ -29,7 +29,7 @@ platform:
     userID: ${ibm_id}
     powervsResourceGroup: "${resource_group}"
     region: ${powervs_region}
-    vpcName: rdr-ipi-mjturek-eu-de-vpc
+    vpcName: ${vpc_name}
     zone: ${powervs_zone}
 publish: Internal
 pullSecret: '${pull_secret}'

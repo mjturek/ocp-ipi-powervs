@@ -51,3 +51,8 @@ variable "api_key" {
   type        = string
   description = "The IBM Cloud API key used to deploy the cluster."
 }
+
+variable "vpc_name" {
+  type        = string
+  description = "Name of the VPC that you will be deploying from."
+}

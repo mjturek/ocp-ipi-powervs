@@ -10,6 +10,7 @@ module "install-config" {
   powervs_zone   = var.powervs_zone
   pull_secret    = var.pull_secret
   ssh_key        = var.ssh_key
+  vpc_name       = var.vpc_name
 }
 
 module "manifests" {
