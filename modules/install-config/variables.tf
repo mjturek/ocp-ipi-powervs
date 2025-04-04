@@ -33,7 +33,7 @@ variable "powervs_zone" {
   description = "The PowerVS zone you want to deploy to."
 }
 
-variable "pull_secret" {
+variable "pull_secret_file" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
 }

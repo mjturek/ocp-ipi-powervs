@@ -37,9 +37,10 @@ variable "powervs_zone" {
   default     = "dal10"
 }
 
-variable "pull_secret" {
+variable "pull_secret_file" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
+  default     = "./data/pullSecret"
 }
 
 variable "ssh_key" {
