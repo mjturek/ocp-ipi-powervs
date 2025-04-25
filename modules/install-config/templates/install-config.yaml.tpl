@@ -31,7 +31,7 @@ platform:
     region: ${powervs_region}
     vpcName: ${vpc_name}
     zone: ${powervs_zone}
-publish: Internal
+publish: External
 pullSecret: '${pull_secret}'
 sshKey: |
   ${ssh_key}

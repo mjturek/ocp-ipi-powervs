@@ -1,8 +1,12 @@
+locals {
+  cluster_dir = pathexpand("~/${var.cluster_dir}")
+}
+
 module "install-config" {
   source = "./modules/install-config"
 
   basedomain       = var.basedomain
-  cluster_dir      = pathexpand("~/${var.cluster_dir}")
+  cluster_dir      = local.cluster_dir
   cluster_name     = var.cluster_name
   ibm_id           = var.ibm_id
   resource_group   = var.resource_group
@@ -16,5 +20,22 @@ module "install-config" {
 module "manifests" {
   source = "./modules/manifests"
   api_key     = var.api_key
-  cluster_dir = pathexpand("~/${var.cluster_dir}")
+  cluster_dir = local.cluster_dir
+
+  depends_on = [
+    module.install-config
+  ]
+}
+
+resource "null_resource" "create-cluster" {
+  provisioner "local-exec" {
+    environment = {
+      IBMCLOUD_API_KEY = var.api_key
+    }
+    command = "openshift-install create cluster --dir=${local.cluster_dir} --log-level=debug"
+  }
+
+  depends_on = [
+    module.manifests
+  ]
 }
