@@ -17,12 +17,20 @@ module "install-config" {
   vpc_name         = var.vpc_name
 }
 
+module "openshift-tools" {
+  source = "./modules/openshift-tools"
+
+  openshift_release  = var.openshift_release
+  remote_private_key = var.remote_private_key
+}
+
 module "manifests" {
   source = "./modules/manifests"
   api_key     = var.api_key
   cluster_dir = local.cluster_dir
 
   depends_on = [
+    module.openshift-tools,
     module.install-config
   ]
 }
@@ -36,6 +44,8 @@ resource "null_resource" "create-cluster" {
   }
 
   depends_on = [
+    module.openshift-tools,
+    module.install-config,
     module.manifests
   ]
 }

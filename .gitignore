@@ -1,0 +1,6 @@
+# tfvar files
+*.tfvars
+
+# secrets
+data/pullSecret
+vars/

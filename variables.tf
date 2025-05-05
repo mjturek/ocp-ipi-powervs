@@ -19,10 +19,9 @@ variable "ibm_id" {
   description = "The email of the IBM Cloud user deploying the cluster."
 }
 
-variable "resource_group" {
+variable "openshift_release" {
   type        = string
-  description = "The IBM Cloud resource group name that will hold the created resources."
-  default     = "Default"
+  description = "The openshift release (ie: 4.18.5) to be used."
 }
 
 variable "powervs_region" {
@@ -41,6 +40,17 @@ variable "pull_secret_file" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
   default     = "./data/pullSecret"
+}
+
+variable "resource_group" {
+  type        = string
+  description = "The IBM Cloud resource group name that will hold the created resources."
+  default     = "Default"
+}
+
+variable "remote_private_key" {
+  type        = string
+  description = "The location of the private key that will be used to deploy VM."
 }
 
 variable "ssh_key" {
