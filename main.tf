@@ -1,5 +1,18 @@
+provider "ibm" {
+  ibmcloud_api_key = var.api_key
+  region           = var.vpc_region
+  zone             = var.vpc_zone
+}
+
 locals {
   cluster_dir = pathexpand("~/${var.cluster_dir}")
+}
+
+module "dns" {
+  source = "./modules/dns"
+  basedomain     = var.basedomain
+  cluster_name   = var.cluster_name
+  resource_group = var.resource_group
 }
 
 module "install-config" {
@@ -44,8 +57,9 @@ resource "null_resource" "create-cluster" {
   }
 
   depends_on = [
-    module.openshift-tools,
+    module.dns,
     module.install-config,
+    module.openshift-tools,
     module.manifests
   ]
 }
