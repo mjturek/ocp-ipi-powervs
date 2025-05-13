@@ -41,6 +41,10 @@ module "manifests" {
   source = "./modules/manifests"
   api_key     = var.api_key
   cluster_dir = local.cluster_dir
+  cluster_name   = var.cluster_name
+  openshift_release  = var.openshift_release
+  remote_private_key = var.remote_private_key
+  resource_group = var.resource_group
 
   depends_on = [
     module.openshift-tools,
