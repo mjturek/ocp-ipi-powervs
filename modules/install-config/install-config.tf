@@ -1,4 +1,4 @@
-resource "local_file" "install-config" {
+resource "local_file" "install_config" {
   file_permission = "0640"
   content         = templatefile("${path.module}/templates/install-config.yaml.tpl",
                     {
@@ -13,5 +13,30 @@ resource "local_file" "install-config" {
                       ssh_key : var.ssh_key,
                       vpc_name: var.vpc_name,
                     })
-  filename        = "${var.cluster_dir}/install-config.yaml"
+  filename        = "install-config.yaml"
+}
+
+resource "null_resource" "install_config" {
+  connection {
+    agent       = "false"
+    type        = "ssh"
+    user        = "root"
+    host        = "localhost"
+    private_key = "${file("${var.remote_private_key}")}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p ${var.cluster_dir}"
+    ]
+  }
+
+  provisioner "file" {
+    source = "install-config.yaml"
+    destination = "${var.cluster_dir}/install-config.yaml"
+  }
+
+  depends_on = [
+    resource.local_file.install_config
+  ]
 }

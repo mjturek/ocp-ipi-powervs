@@ -23,6 +23,11 @@ variable "resource_group" {
   description = "The IBM Cloud resource group name that will hold the created resources."
 }
 
+variable "remote_private_key" {
+  type        = string
+  description = "The location of the private key that will be used to deploy VM."
+}
+
 variable "powervs_region" {
   type        = string
   description = "The PowerVS region you want to deploy to."

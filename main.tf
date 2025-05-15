@@ -5,7 +5,7 @@ provider "ibm" {
 }
 
 locals {
-  cluster_dir = pathexpand("~/${var.cluster_dir}")
+  cluster_dir = pathexpand("${var.cluster_dir}")
 }
 
 module "dns" {
@@ -18,16 +18,17 @@ module "dns" {
 module "install-config" {
   source = "./modules/install-config"
 
-  basedomain       = var.basedomain
-  cluster_dir      = local.cluster_dir
-  cluster_name     = var.cluster_name
-  ibm_id           = var.ibm_id
-  resource_group   = var.resource_group
-  powervs_region   = var.powervs_region
-  powervs_zone     = var.powervs_zone
-  pull_secret_file = var.pull_secret_file
-  ssh_key          = var.ssh_key
-  vpc_name         = var.vpc_name
+  basedomain         = var.basedomain
+  cluster_dir        = local.cluster_dir
+  cluster_name       = var.cluster_name
+  ibm_id             = var.ibm_id
+  powervs_region     = var.powervs_region
+  powervs_zone       = var.powervs_zone
+  pull_secret_file   = var.pull_secret_file
+  resource_group     = var.resource_group
+  remote_private_key = var.remote_private_key
+  ssh_key            = var.ssh_key
+  vpc_name           = var.vpc_name
 }
 
 module "openshift-tools" {
