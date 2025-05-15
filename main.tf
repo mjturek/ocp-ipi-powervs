@@ -53,14 +53,12 @@ module "manifests" {
   ]
 }
 
-resource "null_resource" "create-cluster" {
-  provisioner "local-exec" {
-    environment = {
-      IBMCLOUD_API_KEY = var.api_key
-    }
-    command = "openshift-install create cluster --dir=${local.cluster_dir} --log-level=debug"
-  }
+module "cluster" {
+  source = "./modules/cluster"
 
+  api_key            = var.api_key
+  cluster_dir        = local.cluster_dir
+  remote_private_key = var.remote_private_key
   depends_on = [
     module.dns,
     module.install-config,
