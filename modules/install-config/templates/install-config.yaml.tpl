@@ -30,6 +30,7 @@ platform:
     powervsResourceGroup: "${resource_group}"
     region: ${powervs_region}
     vpcName: ${vpc_name}
+    vpcRegion: ${vpc_region}
     zone: ${powervs_zone}
 publish: External
 pullSecret: '${pull_secret}'

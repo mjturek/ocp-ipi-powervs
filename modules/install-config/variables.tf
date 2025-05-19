@@ -52,3 +52,9 @@ variable "vpc_name" {
   type        = string
   description = "Name of the VPC that you will be deploying from."
 }
+
+variable "vpc_region" {
+  type        = string
+  description = "Region where the VPC specified by vpc_name resides."
+  default     = "us-south"
+}

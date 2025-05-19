@@ -29,6 +29,7 @@ module "install-config" {
   remote_private_key = var.remote_private_key
   ssh_key            = var.ssh_key
   vpc_name           = var.vpc_name
+  vpc_region         = var.vpc_region
 }
 
 module "openshift-tools" {

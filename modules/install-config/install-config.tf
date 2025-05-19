@@ -12,6 +12,7 @@ resource "local_file" "install_config" {
                       pull_secret : file(var.pull_secret_file),
                       ssh_key : var.ssh_key,
                       vpc_name: var.vpc_name,
+                      vpc_region: var.vpc_region,
                     })
   filename        = "install-config.yaml"
 }
