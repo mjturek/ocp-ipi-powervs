@@ -10,7 +10,9 @@ resource "local_file" "install_config" {
                       powervs_region : var.powervs_region,
                       powervs_zone : var.powervs_zone,
                       pull_secret : file(var.pull_secret_file),
+                      powervs_workspace_guid: var.powervs_workspace_guid,
                       ssh_key : var.ssh_key,
+                      tg_name: var.tg_name,
                       vpc_name: var.vpc_name,
                       vpc_region: var.vpc_region,
                     })

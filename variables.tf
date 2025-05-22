@@ -36,6 +36,12 @@ variable "powervs_zone" {
   default     = "dal10"
 }
 
+variable "powervs_workspace_guid" {
+  type        = string
+  description = "The PowerVS workspace you want to use. Default will have the installer create one."
+  default     = ""
+}
+
 variable "pull_secret_file" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
@@ -74,6 +80,12 @@ variable "ssh_user" {
 variable "api_key" {
   type        = string
   description = "The IBM Cloud API key used to deploy the cluster."
+}
+
+variable "tg_name" {
+  type        = string
+  description = "The Transit Gateway you want to use. Default will have the installer create one."
+  default     = ""
 }
 
 variable "vpc_name" {

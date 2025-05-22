@@ -18,20 +18,22 @@ module "dns" {
 module "install-config" {
   source = "./modules/install-config"
 
-  basedomain         = var.basedomain
-  cluster_dir        = local.cluster_dir
-  cluster_name       = var.cluster_name
-  ibm_id             = var.ibm_id
-  powervs_region     = var.powervs_region
-  powervs_zone       = var.powervs_zone
-  pull_secret_file   = var.pull_secret_file
-  resource_group     = var.resource_group
-  ssh_key            = var.ssh_key
-  ssh_host           = var.ssh_host
-  ssh_identity       = var.ssh_identity
-  ssh_user           = var.ssh_user
-  vpc_name           = var.vpc_name
-  vpc_region         = var.vpc_region
+  basedomain             = var.basedomain
+  cluster_dir            = local.cluster_dir
+  cluster_name           = var.cluster_name
+  ibm_id                 = var.ibm_id
+  powervs_region         = var.powervs_region
+  powervs_zone           = var.powervs_zone
+  powervs_workspace_guid = var.powervs_workspace_guid
+  pull_secret_file       = var.pull_secret_file
+  resource_group         = var.resource_group
+  ssh_key                = var.ssh_key
+  ssh_host               = var.ssh_host
+  ssh_identity           = var.ssh_identity
+  ssh_user               = var.ssh_user
+  tg_name                = var.tg_name
+  vpc_name               = var.vpc_name
+  vpc_region             = var.vpc_region
 }
 
 module "openshift-tools" {

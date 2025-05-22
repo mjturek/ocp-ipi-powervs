@@ -33,6 +33,12 @@ variable "powervs_zone" {
   description = "The PowerVS zone you want to deploy to."
 }
 
+variable "powervs_workspace_guid" {
+  type        = string
+  description = "The PowerVS workspace you want to use. Default will have the installer create one."
+  default     = ""
+}
+
 variable "pull_secret_file" {
   type        = string
   description = "The pull secret that will be used to pull openshift."
@@ -60,6 +66,13 @@ variable "ssh_user" {
   description = "The public key that will be used to reach the cluster."
   default     = "root"
 }
+
+variable "tg_name" {
+  type        = string
+  description = "The Transit Gateway you want to use. Default will have the installer create one."
+  default     = ""
+}
+
 variable "vpc_name" {
   type        = string
   description = "Name of the VPC that you will be deploying from."

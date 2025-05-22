@@ -28,6 +28,12 @@ platform:
   powervs:
     userID: ${ibm_id}
     powervsResourceGroup: "${resource_group}"
+%{ if powervs_workspace_guid != "" }
+    serviceInstanceGUID: "${powervs_workspace_guid}"
+%{ endif }
+%{ if tg_name != "" }
+    tgName: "${tg_name}"
+%{ endif }
     region: ${powervs_region}
     vpcName: ${vpc_name}
     vpcRegion: ${vpc_region}
