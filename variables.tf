@@ -48,14 +48,27 @@ variable "resource_group" {
   default     = "Default"
 }
 
-variable "remote_private_key" {
-  type        = string
-  description = "The location of the private key that will be used to deploy VM."
-}
-
 variable "ssh_key" {
   type        = string
   description = "The public key that will be used to reach the cluster."
+}
+
+variable "ssh_identity" {
+  type        = string
+  description = "Agent comment to prioritize when authenticating to remote host."
+  default     = ""
+}
+
+variable "ssh_host" {
+  type        = string
+  description = "The public key that will be used to reach the cluster."
+  default     = "localhost"
+}
+
+variable "ssh_user" {
+  type        = string
+  description = "The public key that will be used to reach the cluster."
+  default     = "root"
 }
 
 variable "api_key" {
@@ -72,4 +85,10 @@ variable "vpc_region" {
   type        = string
   description = "Region where the VPC specified by vpc_name resides."
   default     = "us-south"
+}
+
+variable "vpc_zone" {
+  type        = string
+  description = "Region where the VPC specified by vpc_name resides."
+  default     = "us-south-1"
 }

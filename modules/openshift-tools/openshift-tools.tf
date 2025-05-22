@@ -21,10 +21,11 @@ locals {
 resource "null_resource" "install-tool" {
   for_each = local.tools
   connection {
-    type = "ssh"
-    user = "root"
-    host = "localhost"
-    private_key = "${file("${var.remote_private_key}")}"
+    agent = "true"
+    agent_identity = "root@bluemarine1.fyre.ibm.com"
+    type  = "ssh"
+    user  = "root"
+    host  = "localhost"
   }
   provisioner "remote-exec" {
     inline = [

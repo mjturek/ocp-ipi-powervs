@@ -23,11 +23,6 @@ variable "resource_group" {
   description = "The IBM Cloud resource group name that will hold the created resources."
 }
 
-variable "remote_private_key" {
-  type        = string
-  description = "The location of the private key that will be used to deploy VM."
-}
-
 variable "powervs_region" {
   type        = string
   description = "The PowerVS region you want to deploy to."
@@ -48,6 +43,23 @@ variable "ssh_key" {
   description = "The pull secret that will be used to pull openshift."
 }
 
+variable "ssh_identity" {
+  type        = string
+  description = "Agent comment to prioritize when authenticating to remote host."
+  default     = ""
+}
+
+variable "ssh_host" {
+  type        = string
+  description = "The public key that will be used to reach the cluster."
+  default     = "localhost"
+}
+
+variable "ssh_user" {
+  type        = string
+  description = "The public key that will be used to reach the cluster."
+  default     = "root"
+}
 variable "vpc_name" {
   type        = string
   description = "Name of the VPC that you will be deploying from."

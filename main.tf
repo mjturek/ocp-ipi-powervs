@@ -26,8 +26,10 @@ module "install-config" {
   powervs_zone       = var.powervs_zone
   pull_secret_file   = var.pull_secret_file
   resource_group     = var.resource_group
-  remote_private_key = var.remote_private_key
   ssh_key            = var.ssh_key
+  ssh_host           = var.ssh_host
+  ssh_identity       = var.ssh_identity
+  ssh_user           = var.ssh_user
   vpc_name           = var.vpc_name
   vpc_region         = var.vpc_region
 }
@@ -36,7 +38,9 @@ module "openshift-tools" {
   source = "./modules/openshift-tools"
 
   openshift_release  = var.openshift_release
-  remote_private_key = var.remote_private_key
+  ssh_host           = var.ssh_host
+  ssh_identity       = var.ssh_identity
+  ssh_user           = var.ssh_user
 }
 
 module "manifests" {
@@ -45,8 +49,10 @@ module "manifests" {
   cluster_dir = local.cluster_dir
   cluster_name   = var.cluster_name
   openshift_release  = var.openshift_release
-  remote_private_key = var.remote_private_key
   resource_group = var.resource_group
+  ssh_host           = var.ssh_host
+  ssh_identity       = var.ssh_identity
+  ssh_user           = var.ssh_user
 
   depends_on = [
     module.openshift-tools,
@@ -59,7 +65,9 @@ module "cluster" {
 
   api_key            = var.api_key
   cluster_dir        = local.cluster_dir
-  remote_private_key = var.remote_private_key
+  ssh_host           = var.ssh_host
+  ssh_identity       = var.ssh_identity
+  ssh_user           = var.ssh_user
   depends_on = [
     module.dns,
     module.install-config,

@@ -4,21 +4,24 @@ locals {
 
 resource "null_resource" "service_accounts" {
   triggers = {
-    account_name  = "${var.cluster_name}-${local.date}"
-    api_key       = "${var.api_key}"
-    output_dir    = "${var.cluster_dir}"
-    cluster_name  = "${var.cluster_name}"
-    requests_dir  = "${var.cluster_dir}/credreqs"
-    release_image = "quay.io/openshift-release-dev/ocp-release:${var.openshift_release}-multi"
+    account_name   = "${var.cluster_name}-${local.date}"
+    api_key        = "${var.api_key}"
+    output_dir     = "${var.cluster_dir}"
+    cluster_name   = "${var.cluster_name}"
+    requests_dir   = "${var.cluster_dir}/credreqs"
+    release_image  = "quay.io/openshift-release-dev/ocp-release:${var.openshift_release}-multi"
     resource_group = "${var.resource_group}"
-    private_key = "${file("${var.remote_private_key}")}"
+    ssh_identity   = "${var.ssh_identity}"
+    ssh_host       = "${var.ssh_host}"
+    ssh_user       = "${var.ssh_user}"
   }
 
   connection {
-    type = "ssh"
-    user = "root"
-    host = "localhost"
-    private_key = "${self.triggers.private_key}"
+    agent           = "true"
+    agent_identity  = "${self.triggers.ssh_identity}"
+    type            = "ssh"
+    user            = "${self.triggers.ssh_user}"
+    host            = "${self.triggers.ssh_host}"
   }
 
   provisioner "remote-exec" {

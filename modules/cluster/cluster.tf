@@ -4,16 +4,19 @@ locals {
 
 resource "null_resource" "cluster" {
   triggers = {
-    api_key       = "${var.api_key}"
-    cluster_dir    = "${var.cluster_dir}"
-    private_key = "${file("${var.remote_private_key}")}"
+    api_key      = "${var.api_key}"
+    cluster_dir  = "${var.cluster_dir}"
+    ssh_identity = "${var.ssh_identity}"
+    ssh_host     = "${var.ssh_host}"
+    ssh_user     = "${var.ssh_user}"
   }
 
   connection {
-    type = "ssh"
-    user = "root"
-    host = "localhost"
-    private_key = "${self.triggers.private_key}"
+    agent           = "true"
+    agent_identity  = "${self.triggers.ssh_identity}"
+    type            = "ssh"
+    user            = "${self.triggers.ssh_user}"
+    host            = "${self.triggers.ssh_host}"
   }
 
   provisioner "remote-exec" {

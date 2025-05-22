@@ -19,11 +19,11 @@ resource "local_file" "install_config" {
 
 resource "null_resource" "install_config" {
   connection {
-    agent       = "false"
+    agent       = "true"
+    agent_identity = "${var.ssh_identity}"
     type        = "ssh"
-    user        = "root"
-    host        = "localhost"
-    private_key = "${file("${var.remote_private_key}")}"
+    user        = "${var.ssh_user}"
+    host        = "${var.ssh_host}"
   }
 
   provisioner "remote-exec" {
